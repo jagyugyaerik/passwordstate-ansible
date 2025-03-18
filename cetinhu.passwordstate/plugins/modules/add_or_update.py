@@ -101,12 +101,13 @@ def run_module():
         "username": module.params["username"],
         "password": module.params["password"],
     }
-    # response, info = fetch_url(
-    #     module=module, url=url, data=data, headers=headers, method=method
-    # )
-    response = requests.post(url=url, headers=headers, data=data).json()
+    response, info = fetch_url(
+        module=module, url=url, data=data, headers=headers, method=method
+    )
+    # response = requests.post(url=url, headers=headers, data=data).json()
     result["changed"] = True
     result["response"] = response
+    result["info"] = info
 
     module.exit_json(**result)
 
