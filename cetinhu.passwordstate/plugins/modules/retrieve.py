@@ -33,16 +33,15 @@ def run_module():
     method = "GET"
     url = f"{module.params['api_host']}/{module.params['password_list_id']}?title={module.params['title']}"
     headers = {"APIKey": module.params["api_key"]}
-
-    response, info = fetch_url(
-        module=module, url=url, headers=headers, method=method
-    )
+    result["url"] = url
+    module.exit_json(**result)
+    response, info = fetch_url(module=module, url=url, headers=headers, method=method)
     result["changed"] = False
     result["response"] = response
     result["info"] = info
-    result["url"] = url
 
-    module.exit_json(**result)
+
+
 
 
 def main():
