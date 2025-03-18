@@ -40,7 +40,7 @@ def run_module():
     #     module=module, url=url, headers=headers, method=method
     # )
 
-    response = requests.get(url, headers=headers).json()[0]
+    response = requests.get(url, headers=headers).json()
 
     result["changed"] = False
     result["response"] = response
