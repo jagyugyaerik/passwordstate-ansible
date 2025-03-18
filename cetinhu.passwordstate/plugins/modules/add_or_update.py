@@ -103,7 +103,7 @@ def run_module():
     # response, info = fetch_url(
     #     module=module, url=url, data=data, headers=headers, method=method
     # )
-    response = requests.post(url=url, headers=headers, data=data)
+    response = requests.post(url=url, headers=headers, data=data).json()
     result["changed"] = True
     result["response"] = response
 
