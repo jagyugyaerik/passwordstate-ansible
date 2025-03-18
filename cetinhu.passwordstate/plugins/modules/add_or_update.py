@@ -1,6 +1,7 @@
 from ansible.module_utils.basic import *
 from ansible.module_utils.urls import fetch_url
 
+import requests
 
 __metaclass__ = type
 
@@ -99,12 +100,12 @@ def run_module():
         "username": module.params["username"],
         "password": module.params["password"],
     }
-    response, info = fetch_url(
-        module=module, url=url, data=data, headers=headers, method=method
-    )
+    # response, info = fetch_url(
+    #     module=module, url=url, data=data, headers=headers, method=method
+    # )
+    response = requests.post(url=url, headers=headers, data=data)
     result["changed"] = True
     result["response"] = response
-    result["info"] = info
 
     module.exit_json(**result)
 
