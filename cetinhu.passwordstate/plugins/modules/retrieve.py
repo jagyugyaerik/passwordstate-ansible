@@ -40,6 +40,7 @@ def run_module():
     result["changed"] = False
     result["response"] = response
     result["info"] = info
+    result["url"] = url
 
     module.exit_json(**result)
 
