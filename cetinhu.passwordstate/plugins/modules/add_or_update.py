@@ -85,6 +85,8 @@ def run_module():
 
     result = dict(changed=False, password="", response="")
 
+    module.exit_json(**result)
+
     module = AnsibleModule(argument_spec=module_args, supports_check_mode=True)
 
     if module.check_mode:
