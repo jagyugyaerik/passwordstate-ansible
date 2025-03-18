@@ -1,3 +1,4 @@
+from module_utils.passwordstate_utils import passwordstate_common_argument_spec
 from ansible.module_utils.basic import *
 from ansible.module_utils.urls import fetch_url
 
@@ -74,44 +75,47 @@ RETURN = r"""return"""
 
 
 def run_module():
-    module_args = dict(
-        api_host=dict(type="str", required=True),
-        api_key=dict(type="str", required=True),
-        password_list_id=dict(type="str", required=True),
-        password_id=dict(type="str", required=False, default=""),
-        title=dict(type="str", required=False, default=""),
-        username=dict(type="str", required=False, default=""),
-        password=dict(type="str", required=False, default=""),
+    module_args: dict[str, dict[str, str | bool]] = passwordstate_common_argument_spec()
+    module_args.update(
+        dict(
+            password_id=dict(type="str", required=False, default=""),
+            title=dict(type="str", required=False, default=""),
+            username=dict(type="str", required=False, default=""),
+            password=dict(type="str", required=False, default=""),
+        )
     )
 
-    result = dict(changed=False, password="", response="")
+    result: dict[str, bool | str] = dict(changed=False, password="", response="")
 
-    module = AnsibleModule(argument_spec=module_args, supports_check_mode=True)
+    module: AnsibleModule = AnsibleModule(
+        argument_spec=module_args, supports_check_mode=True
+    )
 
     if module.check_mode:
         module.exit_json(**result)
 
-    method = "POST"
-    endpoint = "passwords"
-    url = f"{module.params['api_host']}/{endpoint}"
-    headers = {"APIKey": module.params["api_key"]}
-    data = {
-        'passwordlistid': module.params.get('password_list_id'),
+    method: str = "POST"
+    endpoint: str = "passwords"
+    url: str = f"{module.params['api_host']}/{endpoint}"
+    headers: dict[str, str] = {"APIKey": module.params["api_key"]}
+    data: dict[str, str] = {
+        "passwordlistid": module.params.get("password_list_id"),
         "title": module.params["title"],
         "username": module.params["username"],
         "password": module.params["password"],
     }
-    response, _ = fetch_url(
-        module=module, url=url, data=data, headers=headers, method=method
-    )
-    # response = requests.post(url=url, headers=headers, data=data).json()
+
+    response: requests.Response = requests.post(
+        url=url, headers=headers, data=data, method=method
+    ).json()
+
     result["changed"] = True
     result["response"] = response
 
     module.exit_json(**result)
 
 
-def main():
+def main() -> None:
     run_module()
 
 
