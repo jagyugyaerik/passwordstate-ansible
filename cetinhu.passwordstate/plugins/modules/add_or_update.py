@@ -99,10 +99,7 @@ def run_module():
         "password": module.params["password"],
     }
     response, info = fetch_url(
-        url=url,
-        data=data,
-        headers=headers,
-        method=method,
+        module=module, url=url, data=data, headers=headers, method=method
     )
     result["changed"] = True
     result["response"] = response
