@@ -1,4 +1,4 @@
-from module_utils.passwordstate_utils import passwordstate_common_argument_spec
+from cetinhu.passwordstate.plugins.module_utils import passwordstate_common_argument_spec
 
 from ansible.module_utils.basic import *
 from ansible.module_utils.urls import fetch_url
