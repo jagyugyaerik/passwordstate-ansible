@@ -1,6 +1,8 @@
 from ansible.module_utils.basic import *
 from ansible.module_utils.urls import fetch_url
 
+import requests
+
 
 __metaclass__ = type
 
@@ -34,12 +36,14 @@ def run_module():
     url = f"{module.params['api_host']}/{module.params['password_list_id']}?QueryAll&ExcludePassword=true"
     headers = {"APIKey": module.params["api_key"]}
 
-    response, info = fetch_url(
-        module=module, url=url, headers=headers, method=method
-    )
+    # response, info = fetch_url(
+    #     module=module, url=url, headers=headers, method=method
+    # )
+
+    response = requests.get(url, headers=headers).json()[0]
+
     result["changed"] = False
     result["response"] = response
-    result["info"] = info
     result["url"] = url
 
     module.exit_json(**result)
