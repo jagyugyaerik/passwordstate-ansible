@@ -91,7 +91,7 @@ def run_module():
         module.exit_json(**result)
 
     method = "POST"
-    url = f"{module.params.api_host}/api/passwords/{module.params.password_list_id}"
+    url = f"{module.params.api_host}/{module.params.password_list_id}"
     headers = {"APIKey": module.params["api_key"]}
     data = {
         "title": module.params["title"],
