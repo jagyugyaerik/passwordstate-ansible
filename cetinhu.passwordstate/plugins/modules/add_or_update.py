@@ -87,15 +87,11 @@ def run_module():
 
     module = AnsibleModule(argument_spec=module_args, supports_check_mode=True)
 
-    result["params"] = module.params
-
-    module.exit_json(**result)
-
     if module.check_mode:
         module.exit_json(**result)
 
     method = "POST"
-    url = f"{module.params.api_host}/{module.params.password_list_id}"
+    url = f"{module.params['api_host']}/{module.params['password_list_id']}"
     headers = {"APIKey": module.params["api_key"]}
     data = {
         "title": module.params["title"],
