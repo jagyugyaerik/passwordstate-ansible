@@ -87,6 +87,8 @@ def run_module():
 
     module = AnsibleModule(argument_spec=module_args, supports_check_mode=True)
 
+    result["params"] = module.params
+
     module.exit_json(**result)
 
     if module.check_mode:
