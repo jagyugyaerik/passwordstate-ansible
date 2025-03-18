@@ -35,7 +35,6 @@ def run_module() -> None:
     if module.check_mode:
         module.exit_json(**result)
 
-    method: str = "GET"
     endpoint: str = "searchpasswords"
     url: str = (
         f"{module.params['api_host']}/{endpoint}/{module.params['password_list_id']}?title={module.params['title']}"
@@ -43,7 +42,7 @@ def run_module() -> None:
     headers: dict[str, str] = {"APIKey": module.params["api_key"]}
 
     response: requests.Response = requests.get(
-        url, headers=headers, method=method
+        url, headers=headers
     ).json()
 
     result["changed"] = False

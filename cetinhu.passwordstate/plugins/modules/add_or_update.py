@@ -93,7 +93,6 @@ def run_module():
     if module.check_mode:
         module.exit_json(**result)
 
-    method: str = "POST"
     endpoint: str = "passwords"
     url: str = f"{module.params['api_host']}/{endpoint}"
     headers: dict[str, str] = {"APIKey": module.params["api_key"]}
@@ -105,7 +104,7 @@ def run_module():
     }
 
     response: requests.Response = requests.post(
-        url=url, headers=headers, data=data, method=method
+        url=url, headers=headers, data=data
     ).json()
 
     result["changed"] = True
