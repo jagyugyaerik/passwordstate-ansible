@@ -35,7 +35,7 @@ def run_module():
     headers = {"APIKey": module.params["api_key"]}
 
     response, info = fetch_url(
-        module=module, url=f"https://passwordstate.cetin.hu/api/password/744?title={module.params['title']}", headers=headers, method=method
+        module=module, url=url, headers=headers, method=method
     )
     result["changed"] = False
     result["response"] = response
