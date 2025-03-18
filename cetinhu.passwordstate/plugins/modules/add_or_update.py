@@ -93,9 +93,10 @@ def run_module():
 
     method = "POST"
     endpoint = "passwords"
-    url = f"{module.params['api_host']}/{endpoint}/{module.params['password_list_id']}"
+    url = f"{module.params['api_host']}/{endpoint}"
     headers = {"APIKey": module.params["api_key"]}
     data = {
+        'passwordlistid': module.params.get('password_list_id'),
         "title": module.params["title"],
         "username": module.params["username"],
         "password": module.params["password"],
