@@ -1,5 +1,3 @@
-from cetinhu.passwordstate.plugins.module_utils import passwordstate_common_argument_spec
-
 from ansible.module_utils.basic import *
 from ansible.module_utils.urls import fetch_url
 
@@ -20,14 +18,12 @@ RETURN = r"""return"""
 
 
 def run_module() -> None:
-    module_args: dict[str, dict[str, str | bool]] = passwordstate_common_argument_spec()
-    module_args.update(
-        dict(
-            password_id=dict(type="str", required=False, default=""),
-            title=dict(type="str", required=False, default=""),
-            username=dict(type="str", required=False, default=""),
-            password=dict(type="str", required=False, default=""),
-        )
+    module_args: dict[str, dict[str, str | bool]] = dict(
+        api_host=dict(type="str", required=True),
+        api_key=dict(type="str", required=True),
+        password_list_id=dict(type="str", required=True),
+        password_id=dict(type="str", required=False, default=""),
+        title=dict(type="str", required=False, default=""),
     )
 
     result: dict[str, bool | str] = dict(changed=False, password="", response="")
