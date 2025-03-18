@@ -26,7 +26,7 @@ def run_module() -> None:
         title=dict(type="str", required=False, default=""),
     )
 
-    result: dict[str, bool | str] = dict(changed=False, password="", response="")
+    result: dict[str, bool | str] = dict(changed=False, password="", password_id="")
 
     module: AnsibleModule = AnsibleModule(
         argument_spec=module_args, supports_check_mode=True
