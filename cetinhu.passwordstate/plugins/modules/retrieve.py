@@ -41,12 +41,11 @@ def run_module() -> None:
     )
     headers: dict[str, str] = {"APIKey": module.params["api_key"]}
 
-    response: requests.Response = requests.get(
-        url, headers=headers
-    ).json()[0]
+    response: requests.Response = requests.get(url, headers=headers).json()[0]
 
     result["changed"] = False
     result["password"] = response["Password"]
+    result["username"] = response["Username"]
     result["password_id"] = response["PasswordID"]
 
     module.exit_json(**result)
