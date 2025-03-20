@@ -45,7 +45,7 @@ def run_module() -> None:
 
     result["changed"] = False
     result["password"] = response["Password"]
-    result["username"] = response["Username"]
+    result["username"] = response["UserName"]
     result["password_id"] = response["PasswordID"]
 
     module.exit_json(**result)
