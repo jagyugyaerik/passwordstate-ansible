@@ -1,3 +1,5 @@
+from cetinhu.passwordstate.plugins.module_utils.utils import import_run
+
 from ansible.module_utils.basic import *
 from ansible.module_utils.urls import fetch_url
 
@@ -82,6 +84,7 @@ def run_module():
         title=dict(type="str", required=False, default=""),
         username=dict(type="str", required=False, default=""),
         password=dict(type="str", required=False, default=""),
+        hostname=dict(type="str", required=False, default=""),
     )
 
     result: dict[str, bool | str] = dict(changed=False, password="", response="")
@@ -101,6 +104,7 @@ def run_module():
         "title": module.params["title"],
         "username": module.params["username"],
         "password": module.params["password"],
+        "hostname": module.params["hostname"],
     }
 
     response: requests.Response = requests.post(
