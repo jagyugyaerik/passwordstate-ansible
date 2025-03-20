@@ -46,6 +46,7 @@ def run_module() -> None:
     result["changed"] = False
     result["password"] = response["Password"]
     result["username"] = response["UserName"]
+    result["url"] = response["URL"]
     result["generic_field_1"] = response["GenericField1"]
     result["password_id"] = response["PasswordID"]
 
