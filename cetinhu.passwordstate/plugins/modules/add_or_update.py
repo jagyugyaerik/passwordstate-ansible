@@ -1,5 +1,3 @@
-from cetinhu.passwordstate.plugins.module_utils.utils import import_run
-
 from ansible.module_utils.basic import *
 from ansible.module_utils.urls import fetch_url
 
