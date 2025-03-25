@@ -47,7 +47,10 @@ def run_module() -> None:
     response: requests.Response = requests.get(url, headers=headers).json()[0]
 
     result["changed"] = False
-    result["password"] = response
+    result["password"] = response["Password"]
+    result["username"] = response["UserName"]
+    result["generic_field_1"] = response["GenericField1"]
+    result["password_id"] = response["PasswordID"]
 
     module.exit_json(**result)
 

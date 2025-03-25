@@ -82,7 +82,6 @@ def run_module():
         title=dict(type="str", required=False, default=""),
         username=dict(type="str", required=False, default=""),
         password=dict(type="str", required=False, default=""),
-        url=dict(type="str", required=False, default=""),
         generic_field_1=dict(type="str", required=False, default=""),
     )
 
@@ -103,7 +102,6 @@ def run_module():
         "title": module.params["title"],
         "username": module.params["username"],
         "password": module.params["password"],
-        "url": module.params["url"],
         "genericfield1": module.params["generic_field_1"],
     }
 
