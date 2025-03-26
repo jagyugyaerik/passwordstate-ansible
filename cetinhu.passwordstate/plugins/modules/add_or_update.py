@@ -83,6 +83,7 @@ def run_module():
         username=dict(type="str", required=False, default=""),
         password=dict(type="str", required=False, default=""),
         generic_field_1=dict(type="str", required=False, default=""),
+        url=dict(type="str", required=False, default=""),
     )
 
     result: dict[str, bool | str] = dict(changed=False, password="", response="")
@@ -103,6 +104,7 @@ def run_module():
         "username": module.params["username"],
         "password": module.params["password"],
         "genericfield1": module.params["generic_field_1"],
+        "url": module.params["url"]
     }
 
     response: requests.Response = requests.post(

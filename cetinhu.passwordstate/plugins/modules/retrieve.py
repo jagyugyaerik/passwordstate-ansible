@@ -48,6 +48,7 @@ def run_module() -> None:
     result["username"] = response["UserName"]
     result["generic_field_1"] = response["GenericField1"]
     result["password_id"] = response["PasswordID"]
+    result["url"] = response["URL"]
 
     module.exit_json(**result)
 
