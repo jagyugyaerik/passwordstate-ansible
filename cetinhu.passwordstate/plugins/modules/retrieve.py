@@ -36,11 +36,8 @@ def run_module() -> None:
         module.exit_json(**result)
 
     endpoint: str = "searchpasswords"
-    # url: str = (
-    #     f"{module.params['api_host']}/{endpoint}/{module.params['password_list_id']}?title={module.params['title']}"
-    # )
     url: str = (
-        f"{module.params['api_host']}/{endpoint}/{module.params['password_list_id']}?QueryAll&ExcludePassword=true"
+        f"{module.params['api_host']}/{endpoint}/{module.params['password_list_id']}?title={module.params['title']}"
     )
     headers: dict[str, str] = {"APIKey": module.params["api_key"]}
 
