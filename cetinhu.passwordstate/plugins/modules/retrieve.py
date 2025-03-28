@@ -43,7 +43,6 @@ def run_module() -> None:
 
     response: requests.Response = requests.get(url, headers=headers).json()[0]
     result["changed"] = False
-    result["response"] = response
     try:
         result["found"] = True
         result["password"] = response["Password"]
