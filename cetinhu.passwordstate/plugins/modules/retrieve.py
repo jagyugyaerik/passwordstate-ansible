@@ -43,30 +43,17 @@ def run_module() -> None:
 
     response: requests.Response = requests.get(url, headers=headers).json()[0]
     result["changed"] = False
-    result['response'] = response
+    result["response"] = response
     try:
+        result["found"] = True
         result["password"] = response["Password"]
+        result["username"] = response["UserName"]
+        result["generic_field_1"] = response["GenericField1"]
+        result["password_id"] = response["PasswordID"]
+        result["url"] = response["URL"]
     except KeyError:
+        result["found"] = False
         result["errors"] = response["errors"]
-    # try:
-    #     result["found"] = True
-    #     result["password"] = response["Password"]
-    #     result["username"] = response["UserName"]
-    #     result["generic_field_1"] = response["GenericField1"]
-    #     result["password_id"] = response["PasswordID"]
-    #     result["url"] = response["URL"]
-    #     result["response"] = response
-    # except KeyError:
-    #     result = {}
-    #     result["cahnged"] = False
-    #     module.exit_json(
-    #         {
-    #             result["found"]: False,
-    #             result["message"]: "Password has not been found",
-    #             result["status"]: "404",
-    #             result["response"]: response
-    #         }
-    #     )
 
     module.exit_json(**result)
 
