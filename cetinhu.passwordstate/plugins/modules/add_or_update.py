@@ -78,10 +78,10 @@ def run_module():
         api_host=dict(type="str", required=True),
         api_key=dict(type="str", required=True),
         password_list_id=dict(type="str", required=True),
-        password_id=dict(type="str", required=True),
         title=dict(type="str", required=True,),
         username=dict(type="str", required=True),
         password=dict(type="str", required=True),
+        password_id=dict(type="str", required=False, default=""),
         generic_field_1=dict(type="str", required=False, default=""),
         url=dict(type="str", required=False, default=""),
     )
