@@ -79,9 +79,9 @@ def run_module():
         api_key=dict(type="str", required=True),
         password_list_id=dict(type="str", required=True),
         password_id=dict(type="str", required=False, default=""),
-        title=dict(type="str", required=False, default=""),
-        username=dict(type="str", required=False, default=""),
-        password=dict(type="str", required=False, default=""),
+        title=dict(type="str", required=True, default=""),
+        username=dict(type="str", required=True, default=""),
+        password=dict(type="str", required=True, default=""),
         generic_field_1=dict(type="str", required=False, default=""),
         url=dict(type="str", required=False, default=""),
     )
@@ -104,7 +104,7 @@ def run_module():
         "username": module.params["username"],
         "password": module.params["password"],
         "genericfield1": module.params["generic_field_1"],
-        "url": module.params["url"]
+        "url": module.params["url"],
     }
 
     response: requests.Response = requests.post(
